@@ -38,5 +38,5 @@ Usage example:
     )
     document.getElementById('cvs').appendChild(xpmImage)
 
-Will print out: ![this image](http://www.margaine.com/img/blog/xpmjs.png)
+Will print out: ![this image](http://ralt.github.com/img/blog/xpmjs.png)
 
