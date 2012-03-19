@@ -23,7 +23,6 @@ var XPM = {
         canvas.width = width
         canvas.height = height
         for (var i = 0; i < nbColors; ++i) {
-            debugger
             characters = arguments[1 + i].substring(0, parseInt(nbCharactersPerColor))
             color = arguments[1 + i].substring(parseInt(nbCharactersPerColor) + 3)
             map.push({characters: characters, color: color})
