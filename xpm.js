@@ -20,7 +20,7 @@ var XPM = {
             nbCharactersPerColor = firstArgument[3],
 
         // Get the end of the argument array (all the characters of the image)
-            imgCharacters = [].slice.call(arguments, parseInt(nbColors) + 1),
+            imgCharacters = [].slice.call(arguments, parseInt(nbColors, 10) + 1),
 
         // Create a canvas
             canvas = document.createElement('canvas'),
@@ -29,27 +29,33 @@ var XPM = {
         // Declare some variables for later use
             map = [],
             characters,
-            color
+            color,
+            i,
+            j,
+            k
 
         // Define the width and height of the canvas
         canvas.width = width
         canvas.height = height
 
         // Add every mapping of characters and colors to the `map` array
-        for (var i = 0; i < nbColors; ++i) {
-            characters = arguments[1 + i].substring(0, parseInt(nbCharactersPerColor))
-            color = arguments[1 + i].substring(parseInt(nbCharactersPerColor) + 3)
-            map.push({characters: characters, color: color})
+        for (i = 0; i < nbColors; ++i) {
+            characters = arguments[1 + i].substring(0, parseInt(nbCharactersPerColor, 10))
+            color = arguments[1 + i].substring(parseInt(nbCharactersPerColor, 10) + 3)
+            map.push({
+                characters: characters,
+                color: color
+            })
         }
 
         // For every line of the ASCII art
-        for (var i = 0; i < height; ++i) {
+        for (i = 0; i < height; ++i) {
 
             // For every string of a line
-            for (var j = 0; j < width; ++j) {
+            for (j = 0; j < width; ++j) {
 
                 // Loop to get the correct mapping
-                for (var k = 0, l = map.length; k < l; ++k) {
+                for (k = 0, l = map.length; k < l; ++k) {
 
                     // If it maps, draw!
                     if (map[k].characters === imgCharacters[i][j]) {
