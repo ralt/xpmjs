@@ -16,11 +16,11 @@ var XPM = {
         // per color with the first argument.
             width = firstArgument[0],
             height = firstArgument[1],
-            nbColors = parseInt(firstArgument[2], 10),
-            nbCharactersPerColor = parseInt(firstArgument[3], 10),
+            nbColors = firstArgument[2],
+            nbCharactersPerColor = firstArgument[3],
 
         // Get the end of the argument array (all the characters of the image)
-            imgCharacters = [].slice.call(arguments, nbColors + 1),
+            imgCharacters = [].slice.call(arguments, parseInt(nbColors, 10) + 1),
 
         // Create a canvas
             canvas = document.createElement('canvas'),
@@ -29,35 +29,38 @@ var XPM = {
         // Declare some variables for later use
             map = [],
             characters,
-            color
+            color,
+            i,
+            j,
+            k
 
         // Define the width and height of the canvas
         canvas.width = width
         canvas.height = height
 
         // Add every mapping of characters and colors to the `map` array
-        for (var i = 0; i < nbColors; ++i) {
-            characters = arguments[1 + i].substring(0, nbCharactersPerColor)
-            color = arguments[1 + i].slice(-7)
-            map.push({characters: characters, color: color})
+        for (i = 0; i < nbColors; ++i) {
+            characters = arguments[1 + i].substring(0, parseInt(nbCharactersPerColor, 10))
+            color = arguments[1 + i].substring(parseInt(nbCharactersPerColor, 10) + 3)
+            map.push({
+                characters: characters,
+                color: color
+            })
         }
 
         // For every line of the ASCII art
-        for (var i = 0; i < height - 1; ++i) {
+        for (i = 0; i < height; ++i) {
 
             // For every string of a line
-            for (var j = 0; j < width; j += nbCharactersPerColor) {
+            for (j = 0; j < width; ++j) {
 
                 // Loop to get the correct mapping
-                for (var k = 0, l = map.length; k < l; ++k) {
+                for (k = 0, l = map.length; k < l; ++k) {
 
                     // If it maps, draw!
-                    if (map[k].characters === imgCharacters[i].substr(j, nbCharactersPerColor)) {
+                    if (map[k].characters === imgCharacters[i][j]) {
                         ctx.fillStyle = map[k].color
                         ctx.fillRect(j, i, 1, 1)
-
-                        // Break out of the loop since we hit the nail already
-                        break
                     }
                 }
             }
