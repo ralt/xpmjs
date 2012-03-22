@@ -29,32 +29,36 @@ var XPM = {
         // Declare some variables for later use
             map = [],
             characters,
-            color
+            color,
+            i,
+            j,
+            k,
+            l
 
         // Define the width and height of the canvas
         canvas.width = width
         canvas.height = height
 
         // Add every mapping of characters and colors to the `map` array
-        for (var i = 0; i < nbColors; ++i) {
+        for (i = 0; i < nbColors; ++i) {
             characters = arguments[1 + i].substring(0, nbCharactersPerColor)
             color = arguments[1 + i].slice(-7)
             map.push({characters: characters, color: color})
         }
 
         // For every line of the ASCII art
-        for (var i = 0; i < height - 1; ++i) {
+        for (i = 0; i < height - 1; ++i) {
 
             // For every string of a line
-            for (var j = 0; j < width; j += nbCharactersPerColor) {
+            for (j = 0; j < (width * nbCharactersPerColor); j += nbCharactersPerColor) {
 
                 // Loop to get the correct mapping
-                for (var k = 0, l = map.length; k < l; ++k) {
+                for (k = 0, l = map.length; k < l; ++k) {
 
                     // If it maps, draw!
                     if (map[k].characters === imgCharacters[i].substr(j, nbCharactersPerColor)) {
                         ctx.fillStyle = map[k].color
-                        ctx.fillRect(j, i, 1, 1)
+                        ctx.fillRect((j * nbCharactersPerColor), i, 1, 1)
 
                         // Break out of the loop since we hit the nail already
                         break
