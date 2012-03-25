@@ -47,7 +47,7 @@ var XPM = {
         }
 
         // For every line of the ASCII art
-        for (i = 0; i < height - 1; ++i) {
+        for (i = 0; i < height; ++i) {
 
             // For every string of a line
             for (j = 0; j < (width * nbCharactersPerColor); j += nbCharactersPerColor) {
