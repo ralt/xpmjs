@@ -18,6 +18,7 @@ var XPM = {
             height = firstArgument[1],
             nbColors = parseInt(firstArgument[2], 10),
             nbCharactersPerColor = parseInt(firstArgument[3], 10),
+            step = width * nbCharactersPerColor,
 
         // Get the end of the argument array (all the characters of the image)
             imgCharacters = [].slice.call(arguments, nbColors + 1),
@@ -50,7 +51,7 @@ var XPM = {
         for (i = 0; i < height; ++i) {
 
             // For every string of a line
-            for (j = 0; j < (width * nbCharactersPerColor); j += nbCharactersPerColor) {
+            for (j = 0; j < step; j += nbCharactersPerColor) {
 
                 // Loop to get the correct mapping
                 for (k = 0, l = map.length; k < l; ++k) {
