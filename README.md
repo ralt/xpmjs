@@ -42,5 +42,5 @@ Will print out: ![this image](https://github.com/Ralt/ralt.github.com/raw/master
 
 It is **not** faster than `.drawImage`, check it out by yourself [there](http://jsperf.com/xpmjs-vs-drawimage/2). It may catch up with it after caching for multiple times, but it will always be slower.
 
-However, it may have some use, as you can see [here](http://jsfiddle.net/Ralt/njaeD/11). Mainly, bandwidth saving, reuse of the same icon with different colors and quick editing of those icons.
+However, it may have some use, as you can see [here](http://jsfiddle.net/njaeD/11). Mainly, bandwidth saving, reuse of the same icon with different colors and quick editing of those icons.
 
